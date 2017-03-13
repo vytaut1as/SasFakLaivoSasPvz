@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="anoproc"
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="invoiceDB" />
+	</bean>
+
+	<bean id="invoiceRepos" class="entities.repositories.jpa.InvoiceDaoImpl"
+		scope="singleton">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="itemRepo" class="entities.repositories.jpa.ItemImpl"
+		scope="singleton">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="invoicesPageData" class="ui.controllers.InvoicesPageBean.InvoicesPageData"
+		scope="session" init-method="init" />
+
+	<bean id="invoicesPageBean" class="ui.controllers.InvoicesPageBean"
+		scope="request">
+		<property name="data" ref="invoicesPageData" />
+		<property name="invoiceRepo" ref="invoiceRepos" />
+	</bean>
+
+	<bean id="newItem" class="entities.Item" scope="session"></bean>
+
+	<bean id="itemsPageB" class="ui.controllers.ItemsPageBean"
+		scope="request" init-method="init" lazy-init="false">
+		<property name="invoiceRepo" ref="invoiceRepos" />
+		<property name="itemRepo" ref="itemRepo" />
+		<property name="newItem" ref="newItem" />
+		<property name="invoicePageBean" ref="invoicesPageBean" />
+	</bean>
+
+
+</beans>

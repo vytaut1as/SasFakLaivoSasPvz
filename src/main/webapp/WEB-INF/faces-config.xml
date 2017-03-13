@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config version="2.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.
+com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+
+		<!-- <variable-resolver> -->
+		<!-- org.springframework.web.jsf.DelegatingVariableResolver -->
+		<!-- </variable-resolver> -->
+		<!-- <el-resolver>org.springframework.web.jsf.el.WebApplicationContextFacesELResolver</el-resolver> -->
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+	</application>
+	<navigation-rule>
+		<from-view-id>/invoices.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>show-add-item</from-outcome>
+			<to-view-id>/itemPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>list-invoices</from-outcome>
+			<to-view-id>/invoices.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>list-invoices</from-outcome>
+			<to-view-id>/invoices.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>show-view-page</from-outcome>
+			<to-view-id>/view.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/itemPage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>list-invoices</from-outcome>
+			<to-view-id>/invoices.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

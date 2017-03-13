@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="sablonas.xhtml">
+
+	<ui:define name="turinys">
+
+
+		<h:form>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+			<p:dataTable value="#{itemsPageB.itemList}" var="item" rowkey="item.id">
+				<f:facet name="header">
+					<h:outputText
+						value="Invoice number : #{invoicesPageBean.data.currentInvoice.number}" />
+				</f:facet>
+				<p:column headerText="Title">
+					<h:outputText value="#{item.title}" />
+				</p:column>
+
+				<p:column headerText="Amount">
+					<h:outputText value="#{item.amount}" />
+				</p:column>
+
+				<p:column headerText="Weight">
+					<h:outputText value="#{item.weight}" />
+				</p:column>
+
+				<p:column headerText="Unit Price">
+					<h:outputText value="#{item.price}" />
+				</p:column>
+
+				<p:column headerText="Total price">
+					<h:outputText value="#{item.totalPrice}" />
+				</p:column>
+
+				<p:column>
+					<h:commandButton value="Delete"
+						action="#{itemsPageB.deleteSelected(item)}" />
+					 <h:commandButton value="Edit" action="#{itemsPageB.addNew}" />  
+				</p:column>
+
+
+
+			</p:dataTable>
+
+		</h:form>
+
+
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+			<p:panel id="basic" header="Item details" style="margin-bottom:20px">
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+					<h:outputLabel for="itemTitle" value="Item title"></h:outputLabel>
+					<h:inputText id="itemTitle" value="#{itemsPageB.newItem.title}">
+						<f:validateBean />
+					</h:inputText>
+					<p:message for="itemTitle" />
+
+					<h:outputLabel for="amount" value="Amount"></h:outputLabel>
+					<h:inputText id="amount" value="#{itemsPageB.newItem.amount}">
+					</h:inputText>
+					<p:message for="amount" />
+
+					<h:outputLabel for="weight" value="Weight"></h:outputLabel>
+					<h:inputText id="weight" value="#{itemsPageB.newItem.weight}">
+					</h:inputText>
+					<p:message for="weight" />
+
+					<h:outputLabel for="price" value="Price"></h:outputLabel>
+					<h:inputText id="price" value="#{itemsPageB.newItem.price}">
+					</h:inputText>
+					<p:message for="price" />
+				</h:panelGrid>
+
+				<h:commandButton action="#{itemsPageB.addNew}" value="Add new"></h:commandButton>
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+
+	<ui:define name="pavadinimas">
+ 	 	Add new item
+ 	 </ui:define>
+
+</ui:composition>

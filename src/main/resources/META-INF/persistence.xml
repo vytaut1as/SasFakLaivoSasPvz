@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="invoiceDB" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>entities.Invoice</class>
+		<class>entities.Item</class>
+		<properties>
+			<!-- if this is true, hibernate will print (to stdout) the SQL it executes, 
+				so you can check it to ensure it's not doing anything crazy -->
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<!-- since most database servers have slightly different versions of the 
+				SQL, Hibernate needs you to choose a dialect so it knows the subtleties of 
+				talking to that server -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect" /> -->
+			<!-- this tell Hibernate to update the DDL when it starts, very useful 
+				for development, dangerous in production -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="none" /> -->
+
+<!-- 			<property namhibernate.temp.use_jdbc_metadata_defaultse="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" /> -->
+			
+<!-- 	   <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" /> -->
+<!--       <property name="javax.persistence.jdbc.url"    value="jdbc:h2:file:~/H2InvoiceDB;AUTO_SERVER=TRUE" /> -->
+<!-- 	   <property name="javax.persistence.jdbc.url"    value="jdbc:h2:tcp://127.0.1.1:9092/~/H2InvoiceDB;AUTO_SERVER=TRUE" /> --> 
+<!--       <property name="javax.persistence.jdbc.user" value="sa" /> -->
+<!--       <property name="javax.persistence.jdbc.password" value="" /> -->
+<!--       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/> -->
+<!--       <property name="show_sql" value="false"/> -->
+<!--       <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/> -->
+      
+      
+      
+      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:./H2InvoiceDB;AUTO_SERVER=TRUE" />
+      <property name="javax.persistence.jdbc.user" value="sa" />
+      <property name="javax.persistence.jdbc.password" value="" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="true"/>
+
+      
+      
+      
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:H2InvoiceDB;create=true" /> -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="root" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="root" /> -->
+<!-- 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.create-source" value="metadata"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.drop-source" value="metadata"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.drop-script-source" value="conf/db/drop-schema.sql"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.create-script-source" value="conf/db/create-schema.sql"/> -->
+<!-- 			<property name="eclipselink.application-location" value="conf/db/"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.database.action" value="create"/> -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+		</properties>
+	</persistence-unit>
+</persistence>

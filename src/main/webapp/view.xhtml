@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="sablonas.xhtml">
+
+	<ui:define name="turinys">
+
+		<h:form>
+
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+			<p:dataTable value="#{itemsPageB.itemList}" var="item">
+				<f:facet name="header">
+					<h:outputText value="Invoice number : #{invoicesPageBean.data.currentInvoice.number}"/>
+				</f:facet>
+
+				<p:column headerText="Title">
+					<h:outputText value="#{item.title}" />
+				</p:column>
+
+				<p:column headerText="Amount">
+					<h:outputText value="#{item.amount}" />
+				</p:column>
+
+				<p:column headerText="Weight">
+					<h:outputText value="#{item.weight}" />
+				</p:column>
+
+				<p:column headerText="Price">
+					<h:outputText value="#{item.price}" />
+				</p:column>
+
+				<p:column headerText="Total price">
+					<h:outputText value="#{item.totalPrice}" />
+				</p:column>
+
+
+			</p:dataTable>
+
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="pavadinimas">
+ 	 	Add new item
+ 	 </ui:define>
+
+</ui:composition>
